@@ -3,6 +3,9 @@ name: Overwrite prod branch with master
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   reset-prod:
     runs-on: ubuntu-latest
