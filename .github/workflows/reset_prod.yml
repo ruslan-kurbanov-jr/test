@@ -1,0 +1,15 @@
+name: Overwrite prod branch with master
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Reset prod branch to master
+        uses: nicksnell/action-reset-repo@master
+        with:
+          base_branch: main
+          reset_branch: prod
