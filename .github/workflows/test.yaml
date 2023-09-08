@@ -1,5 +1,5 @@
 name: Target Workflow
-run-name: "[${{ github.ref_name }}] CI/CD: ${{ inputs.message }}"
+run-name: "[${{ github.ref_name }}] CI/CD: ${{ github.event.workflow_run.head_commit.message }}"
 
 permissions:
   id-token: write
@@ -7,18 +7,13 @@ permissions:
   checks: write
   pull-requests: read
 
+
 on: 
   push:
     branches:
+      - prod
       - dev
   workflow_dispatch:
-    inputs:
-      message:
-        description: 'Last commit message'
-        default: github.event.head_commit.message
-        required: false
-        type: string
-
 
 jobs:
   build:
@@ -27,5 +22,9 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-      - name: Test
-        run: git status
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
+
+      
