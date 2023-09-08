@@ -11,8 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Reset prod branch to master
-        uses: nicksnell/action-reset-repo@master
+      - name: Download code from repo
+        uses: actions/checkout@v3
         with:
-          base_branch: main
-          reset_branch: prod
+          ref: master
+      - name: Recreate prod branch from master
+        run: |
+          git push origin --delete prod
+          git pull origin master
+          git checkout -b prod
+          git push origin prod
+      - name: Invoke workflow in another repo with inputs
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: my-workflow.yaml
+          ref: prod
+
