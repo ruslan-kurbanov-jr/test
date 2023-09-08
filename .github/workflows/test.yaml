@@ -1,5 +1,5 @@
 name: Target Workflow
-run-name: "[${{ github.ref_name }}] CI/CD: ${{ inputs.commit_message }}"
+run-name: "[${{ github.ref_name }}] CI/CD: ${{ inputs.commit_message || github.event.head_commit.message }}"
 
 permissions:
   id-token: write
@@ -17,7 +17,6 @@ on:
     inputs:
       commit_message:
         type: string
-        default: "${{ github.event.head_commit.message }}"
         required: false
 
 
