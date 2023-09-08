@@ -16,7 +16,6 @@ jobs:
           ref: master
       - name: Recreate prod branch from master
         run: |
-          git branch -d prod
           git push origin --delete prod
           git pull origin master
           git checkout -b prod
