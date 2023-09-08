@@ -11,7 +11,7 @@ on:
   push:
     branches:
       - dev
-  workflow_call:
+  workflow_dispatch:
     inputs:
       message:
         description: 'Last commit message'
