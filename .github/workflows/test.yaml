@@ -1,5 +1,12 @@
 name: Target Workflow
 
+permissions:
+  id-token: write
+  contents: read
+  checks: write
+  pull-requests: read
+
+
 on: 
   push:
     branches:
