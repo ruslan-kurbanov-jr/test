@@ -29,6 +29,6 @@ jobs:
         with:
           workflow: .github/workflows/test.yaml
           ref: prod
-          inputs: '{ "commit_message": $COMMIT_MESSAGE }'
+          inputs: '{ "commit_message": "${{ env.COMMIT_MESSAGE }}" }'
   
 
