@@ -24,6 +24,6 @@ jobs:
       - name: Invoke workflow in another repo with inputs
         uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: my-workflow.yaml
+          workflow: test.yaml
           ref: prod
 
