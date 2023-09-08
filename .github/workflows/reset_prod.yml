@@ -20,3 +20,8 @@ jobs:
           git pull origin master
           git checkout -b prod
           git push origin prod
+      - name: Invoke workflow in another repo with inputs
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: .github/workflows/test.yaml
+          ref: prod
