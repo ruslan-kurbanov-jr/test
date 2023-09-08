@@ -1,4 +1,4 @@
-name: Overwrite prod branch with master
+name: Recreate prod branch from master
 
 on:
   workflow_dispatch:
@@ -7,12 +7,17 @@ permissions:
   contents: write
 
 jobs:
-  reset-prod:
-    runs-on: ubuntu-latest
-
+  recreate-prod-branch:
+    runs-on: self-hosted
     steps:
-      - name: Reset prod branch to master
-        uses: nicksnell/action-reset-repo@master
+      - name: Download code from repo
+        uses: actions/checkout@v3
         with:
-          base_branch: main
-          reset_branch: prod
+          ref: master
+      - name: Recreate prod branch from master
+        run: |
+          git branch -d prod
+          git push origin --delete prod
+          git pull origin master
+          git checkout -b prod
+          git push origin prod
