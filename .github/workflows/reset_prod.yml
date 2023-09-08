@@ -8,7 +8,7 @@ permissions:
 
 jobs:
   recreate-prod-branch:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Download code from repo
         uses: actions/checkout@v3
