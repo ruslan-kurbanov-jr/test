@@ -22,14 +22,13 @@ jobs:
           git pull origin master
           git checkout -b prod
           git push origin prod
+      - name: Get latest commit message
+        run: echo "COMMIT_MESSAGE=$(git log -1 --format=%s)" >> $GITHUB_ENV
       - name: Invoke workflow in another repo with inputs
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: .github/workflows/test.yaml
           ref: prod
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+          inputs: '{ "commit_message": "$COMMIT_MESSAGE" }'
   
 
