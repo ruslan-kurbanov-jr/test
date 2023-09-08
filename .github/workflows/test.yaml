@@ -7,12 +7,18 @@ permissions:
   checks: write
   pull-requests: read
 
-
 on: 
   push:
     branches:
       - dev
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      message:
+        description: 'Last commit message'
+        default: "${{ github.event.head_commit.message }}"
+        required: false
+        type: string
+
 
 jobs:
   build:
