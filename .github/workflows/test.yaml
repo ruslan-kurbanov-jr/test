@@ -1,4 +1,5 @@
 name: Target Workflow
+run-name: CI/CD to beanstalk environment from ${{ github.ref_name }} branch
 
 permissions:
   id-token: write
