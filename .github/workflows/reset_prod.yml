@@ -27,3 +27,5 @@ jobs:
         with:
           workflow: .github/workflows/test.yaml
           ref: prod
+          inputs: '{ "message": ${{ github.event.head_commit.message }} }'
+
