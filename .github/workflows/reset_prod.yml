@@ -30,5 +30,3 @@ jobs:
           workflow: .github/workflows/test.yaml
           ref: prod
           inputs: '{ "commit_message": ${{ toJSON(env.COMMIT_MESSAGE) }} }'
-  
-
